@@ -4,10 +4,6 @@ import pandas as pd
 import sqlalchemy
 from tqdm import tqdm
 
-WORK_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DATA_DIR = os.path.join(WORK_DIR, 'data')
-DB_PATH  = os.path.join(DATA_DIR, 'olist.db')
-
 
 def import_query(path, **kwargs):
     '''
@@ -18,11 +14,11 @@ def import_query(path, **kwargs):
     return query
 
 
-def connect_db():
+def connect_sqlite_db(path):
     '''
-    Função para conectar ao banco de dados local (sqlite)
+    Função para conectar a banco de dados sqlite local
     '''
-    string_connection = 'sqlite:///{path}'.format(path=DB_PATH)
+    string_connection = 'sqlite:///{path}'.format(path=path)
     connection = sqlalchemy.create_engine(string_connection)
     return connection
 
